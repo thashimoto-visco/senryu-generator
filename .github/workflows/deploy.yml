@@ -1,0 +1,46 @@
+name: Deploy static site to gh-pages
+
+# main ブランチへの Push をトリガーに実行
+on:
+  push:
+    branches:
+      - main   # or your default branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ソースをフル履歴付きでチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # ── ここにもしビルド処理が必要なら追加 ──
+      # 例）npm install & npm run build
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Build
+      #   run: npm run build
+
+      # 静的ファイル（またはビルド成果物）をまとめるディレクトリを用意
+      - name: Prepare public directory
+        run: |
+          rm -rf public
+          mkdir public
+          # index.html と resources/ をコピー
+          cp index.html public/
+          cp -R resources public/
+
+      # gh-pages ブランチへデプロイ
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages       # 公開用ブランチ名
+          publish_dir: ./public          # 公開対象フォルダ
+          user_name: github-actions[bot] # コミットユーザー名
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: Deploy to gh-pages from GitHub Actions
+          # 追加のオプションが必要な場合は、以下を参考にしてください  
