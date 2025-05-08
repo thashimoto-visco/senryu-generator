@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ランダム川柳ジェネレータ</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 2rem; }
+    #senryu { margin: 1rem 0; font-size: 1.5rem; line-height: 1.6; white-space: pre-wrap; text-align: center; }
+    button { margin: 0.5rem; padding: 0.6rem 1.2rem; font-size: 1rem; border-radius: 4px; cursor: pointer; }
+    #capture-area { background: #f9f9f9; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>ランダム川柳ジェネレータ</h1>
+  <div id="capture-area">
+    <div id="senryu">ここに川柳が表示されます</div>
+  </div>
+  <button id="generate">川柳を生成</button>
+  <button id="download">PNGに保存</button>
+  <button id="copy">クリップボードにコピー</button>
+
+  <!-- html2canvas CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    let line1 = [], line2 = [], line3 = [];
+
+    // CSVから575素材を読み込む（空白の要素はその行で個別に追加）
+    async function loadLines() {
+      try {
+        const res = await fetch('resources/lines.csv');
+        const text = await res.text();
+        const rows = text.trim().split('\n');
+        rows.shift(); // ヘッダー行を削除
+        rows.forEach(row => {
+          const parts = row.split(',');
+          const p1 = parts[0] ? parts[0].trim() : '';
+          const p2 = parts[1] ? parts[1].trim() : '';
+          const p3 = parts[2] ? parts[2].trim() : '';
+          if (p1) line1.push(p1);
+          if (p2) line2.push(p2);
+          if (p3) line3.push(p3);
+        });
+      } catch (e) {
+        console.error('CSVの読み込みに失敗しました:', e);
+      }
+    }
+    loadLines();
+
+    document.getElementById('generate').addEventListener('click', () => {
+      if (!line1.length || !line2.length || !line3.length) {
+        alert('各行の素材が十分に読み込まれていません');
+        return;
+      }
+      const a = line1[Math.floor(Math.random() * line1.length)];
+      const b = line2[Math.floor(Math.random() * line2.length)];
+      const c = line3[Math.floor(Math.random() * line3.length)];
+      document.getElementById('senryu').textContent = `${a}\n${b}\n${c}`;
+    });
+
+    document.getElementById('download').addEventListener('click', () => {
+      html2canvas(document.getElementById('capture-area')).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'senryu.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    });
+
+    document.getElementById('copy').addEventListener('click', async () => {
+      try {
+        const canvas = await html2canvas(document.getElementById('capture-area'));
+        canvas.toBlob(async blob => {
+          const item = new ClipboardItem({ [blob.type]: blob });
+          await navigator.clipboard.write([item]);
+          alert('画像をクリップボードにコピーしました');
+        });
+      } catch (e) {
+        alert('クリップボードへのコピーに失敗しました: ' + e);
+      }
+    });
+  </script>
+</body>
+</html>
