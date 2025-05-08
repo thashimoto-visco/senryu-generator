@@ -25,18 +25,21 @@
   <script>
     let line1 = [], line2 = [], line3 = [];
 
-    // CSVから575素材を読み込む（空白の要素はその行で個別に追加）
+    // CSVから575素材を読み込む（Shift-JISの場合でも文字化けしないようTextDecoderを使用）
     async function loadLines() {
       try {
         const res = await fetch('resources/lines.csv');
-        const text = await res.text();
-        const rows = text.trim().split('\n');
+        const buffer = await res.arrayBuffer();
+        // CSVがShift-JISの場合は 'shift-jis' を、UTF-8の場合は 'utf-8' に変更
+        const decoder = new TextDecoder('utf-8');
+        const text = decoder.decode(buffer);
+        const rows = text.trim().split(/\r?\n/);
         rows.shift(); // ヘッダー行を削除
         rows.forEach(row => {
           const parts = row.split(',');
-          const p1 = parts[0] ? parts[0].trim() : '';
-          const p2 = parts[1] ? parts[1].trim() : '';
-          const p3 = parts[2] ? parts[2].trim() : '';
+          const p1 = parts[0]?.trim() || '';
+          const p2 = parts[1]?.trim() || '';
+          const p3 = parts[2]?.trim() || '';
           if (p1) line1.push(p1);
           if (p2) line2.push(p2);
           if (p3) line3.push(p3);
