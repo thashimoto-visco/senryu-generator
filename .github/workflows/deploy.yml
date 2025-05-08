@@ -1,5 +1,10 @@
 name: Deploy static site to gh-pages
 
+# ここを追加
+permissions:
+  contents: write    # リポジトリの内容を書き込み可に
+  pages: write       # GitHub Pages の書き込み権限も
+
 # main ブランチへの Push をトリガーに実行
 on:
   push:
