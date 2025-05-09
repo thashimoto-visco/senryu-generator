@@ -1,0 +1,107 @@
+body {
+	font-family: 'Hiragino Maru Gothic ProN', 'Comic Sans MS', cursive, sans-serif;
+	background-color: #fff0f6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1.5rem;
+  }
+  
+  .wrapper {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+  }
+  
+  .mascot {
+	width: 140px;
+	height: auto;
+	object-fit: contain;
+  }
+  
+  .bubble {
+	position: relative;
+	background: #ffffff;
+	border: 3px solid #ff99c8;
+	border-radius: 18px;
+	padding: 1rem 1.2rem;
+	max-width: 360px;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .bubble::before {
+	content: "";
+	position: absolute;
+	left: -18px;
+	top: 40px;
+	border-width: 14px;
+	border-style: solid;
+	border-color: transparent #ff99c8 transparent transparent;
+  }
+  
+  .bubble::after {
+	content: "";
+	position: absolute;
+	left: -14px;
+	top: 42px;
+	border-width: 12px;
+	border-style: solid;
+	border-color: transparent #ffffff transparent transparent;
+  }
+  
+  #capture-area {
+	background: #fff5fa;
+	border: 2px dashed #ff99c8;
+	border-radius: 12px;
+	padding: 0.4rem 0.8rem;
+	width: max-content;
+	margin: 0 auto;
+  }
+  
+  #senryu {
+	font-size: 1.6rem;
+	line-height: 1.4;
+	white-space: pre-wrap;
+	text-align: center;
+	margin: 0;
+	color: #ff4786;
+  }
+  
+  .button-group {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	flex-wrap: wrap;
+	justify-content: center;
+  }
+  
+  .button-group button {
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	border: none;
+	background-color: #ff69b4;
+	color: #fff;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: transform 0.1s, background-color 0.2s;
+  }
+  
+  .button-group button:hover {
+	background-color: #ff4786;
+	transform: translateY(-2px);
+  }
+  
+  .back {
+	margin: 0;
+	font-size: 0.9rem;
+  }
+  
+  .back a {
+	color: #ff69b4;
+	text-decoration: none;
+	font-weight: bold;
+  }
+  
+  .back a:hover {
+	text-decoration: underline;
+  }

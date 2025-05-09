@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>川柳ジェネレータ - Cute版</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/cute.css">
+</head>
+<body>
+  <div class="wrapper">
+    <!-- ランダム切り替え用に data-folder 属性を付与 -->
+    <img id="mascot" data-folder="cute" alt="Cute Mascot" class="mascot">
+    <div class="bubble">
+      <div id="capture-area">
+        <div id="senryu">ここに川柳が表示されます</div>
+      </div>
+    </div>
+  </div>
+  <div class="button-group">
+    <button id="generate">川柳を生成</button>
+    <button id="download">PNGに保存</button>
+    <button id="copy">クリップボードにコピー</button>
+    <p class="back"><a href="index.html">トップへ戻る</a></p>
+  </div>
+
+  <!-- html2canvas CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="js/senryu.js"></script>
+</body>
+</html>
