@@ -108,28 +108,23 @@ document.getElementById('copy').addEventListener('click', async () => {
   }
 });
 
-// GitHub APIでフォルダ内画像を取得、その中からランダム表示
+// ページ読み込み時にマスコット画像をランダムにセット
 async function loadMascotImages() {
-  const img = document.getElementById('mascot');
-  if (!img) return;
-  const folder = img.dataset.folder; // 例: "cute"
-  const owner = location.host.split('.')[0]; // GitHub Pagesのユーザ名
-  const repo = location.pathname.split('/')[1]; // リポジトリ名
-  const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/resources/Images/${folder}`;
-  try {
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-    const files = data.filter(item => item.type === 'file');
-    if (!files.length) return;
-    const file = files[Math.floor(Math.random() * files.length)];
-    img.src = file.download_url;
-  } catch (e) {
-    console.error('Mascot画像読み込み失敗:', e);
+	const img = document.getElementById('mascot');
+	if (!img) return;
+	const folder = img.dataset.folder; // e.g. "cute"
+	try {
+	  const res = await fetch(`resources/Images/${folder}/images.json`);
+	  const list = await res.json(); // 例: ["girl1.png", "girl2.png", ...]
+	  const file = list[Math.floor(Math.random() * list.length)];
+	  img.src = `resources/Images/${folder}/${file}`;
+	} catch (e) {
+	  console.error('Mascot 画像読み込み失敗:', e);
+	}
   }
-}
 // ページロード時に実行
 window.addEventListener('load', loadMascotImages);
-  
+
   // キャプチャ対象を判定
   function getCaptureTarget() {
 	const wrapper = document.querySelector('.wrapper');

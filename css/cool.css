@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #111;
+	color: #e0e0e0;
+	font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .cool-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 600px;
+	margin: 2rem auto;
+	padding: 1rem;
+	border: 2px solid #444;
+	background: #1a1a1a;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	border-radius: 8px;
+  }
+  
+  header h1 {
+	font-size: 2rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #444;
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
+  }
+  
+  .cool-bubble {
+	background: linear-gradient(135deg, #222, #333);
+	border: 2px solid #555;
+	border-radius: 8px;
+	padding: 1rem 1.2rem;
+	margin-bottom: 1rem;
+	width: max-content;
+  }
+  
+  #senryu {
+	font-size: 1.5rem;
+	line-height: 1.4;
+	text-align: center;
+	white-space: pre-wrap;
+	color: #a6e22e;
+  }
+  
+  .cool-buttons {
+	display: flex;
+	gap: 0.5rem;
+  }
+  
+  .cool-buttons button {
+	background: #3e3e3e;
+	border: 1px solid #555;
+	color: #e0e0e0;
+	padding: 0.6rem 1.2rem;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.2s;
+  }
+  
+  .cool-buttons button:hover {
+	background: #5e5e5e;
+  }
+  
+  footer {
+	margin-top: 1.5rem;
+  }
+  
+  footer a {
+	color: #66d9ef;
+	text-decoration: none;
+	font-size: 0.9rem;
+  }
+  
+  footer a:hover {
+	text-decoration: underline;
+  }

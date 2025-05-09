@@ -1,0 +1,89 @@
+/* SHIBU版: 映画の字幕風スタイル (縮小＆一行表示) */
+body {
+	margin: 0;
+	padding: 1.5rem;
+	background: #000;
+	color: #fff;
+	font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  /* 画像と字幕を重ねるラッパー */
+  .shibu-wrapper {
+	position: relative;
+	max-width: 400px;
+	width: 100%;
+	overflow: hidden;
+	border: 2px solid #444;
+  }
+  
+  /* 背景画像: 小さめに */
+  .shibu-image {
+	display: block;
+	width: 100%;
+	max-height: auto;
+	object-fit: cover;
+  }
+  
+  /* 字幕風テキスト */
+  #subtitle {
+	position: absolute;
+	bottom: 3%;
+	width: 100%;
+	text-align: center;
+	background: rgba(0,0,0,0.6);
+	padding: 0.4rem 0.6rem;
+  }
+  
+  #senryu {
+	font-size: 1.2rem;
+	line-height: 1.2;
+	color: #fff;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
+  }
+  
+  /* ボタン群 */
+  .button-group {
+	display: flex;
+	gap: 0.4rem;
+	margin-top: 0.8rem;
+	flex-wrap: wrap;
+	justify-content: center;
+  }
+  
+  .button-group button {
+	border: 1px solid #fff;
+	background: transparent;
+	color: #fff;
+	padding: 0.4rem 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+  }
+  
+  .button-group button:hover {
+	background: #fff;
+	color: #000;
+  }
+  
+  /* 戻るリンク */
+  .back {
+	margin: 0;
+	font-size: 0.8rem;
+  }
+  
+  .back a {
+	color: #aaa;
+	text-decoration: none;
+  }
+  
+  .back a:hover {
+	text-decoration: underline;
+  }
