@@ -29,14 +29,21 @@ jobs:
       # - name: Build
       #   run: npm run build
 
-      # 静的ファイル（またはビルド成果物）をまとめるディレクトリを用意
+      # —— ここを動的コピーに置き換え —— 
       - name: Prepare public directory
         run: |
           rm -rf public
           mkdir public
-          # index.html と resources/ をコピー
-          cp index.html public/
-          cp -R resources public/
+          # リポジトリ直下の *.html, css/, js/, resources/ を丸ごとコピー
+          rsync -av \
+            --include='*/' \
+            --include='*.html' \
+            --include='css/***' \
+            --include='js/***' \
+            --include='resources/***' \
+            --exclude='*' \
+            ./ public/
+      # ————————————————————————
 
       # gh-pages ブランチへデプロイ
       - name: Deploy to gh-pages
