@@ -1,0 +1,50 @@
+body {
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+	background-color: #fff;
+  }
+  
+  h1 {
+	margin-bottom: 1rem;
+  }
+  
+/* simple.css の #capture-area を差し替え */
+#capture-area {
+	display: inline-block;
+	width: max-content;       /* ← これが肝心！ */
+	background: #f9f9f9;
+	padding: 0.4rem 0.8rem;   /* 必要最低限の余白だけ */
+	border: 2px solid #ddd;
+	border-radius: 8px;
+  }
+  
+  #senryu {
+	/* フォントサイズを調整（例：2rem） */
+	font-size: 2rem;
+	line-height: 1.4;
+	text-align: center;
+	white-space: pre-wrap;
+	margin: 0;
+  }
+  
+  #buttons {
+	margin-top: 1rem;
+  }
+  
+  button {
+	margin: 0 0.5rem;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	border: none;
+	background-color: #007bff;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  button:hover {
+	background-color: #0056b3;
+  }

@@ -1,0 +1,13 @@
+{
+  "name": "senryu-generator",
+  "version": "1.0.0",
+  "description": "Web版川柳ジェネレーター",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-images": "node scripts/generate-images.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
